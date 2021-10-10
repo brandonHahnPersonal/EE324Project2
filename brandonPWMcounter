@@ -1,0 +1,47 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 10/01/2021 07:35:44 PM
+// Design Name: 
+// Module Name: brandonPWM
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+module brandonPWM(
+    input clk,
+    input enable,
+    input [31:0] width,
+    input [31:0] period,
+    output reg outSignal
+    );    
+    reg [31:0] counter;    
+    always @ (posedge clk)
+    begin
+        counter <= counter+1;
+        if(counter >= period)
+        begin
+            counter <= 0;
+        end
+        else if (counter <= width)
+        begin
+            outSignal <= 1;
+        end
+        else
+        begin
+            outSignal <= 0;
+        end            
+    end    
+endmodule
